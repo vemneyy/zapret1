@@ -963,6 +963,7 @@ static bool runtime_tls_mod(int fake_n, const struct fake_tls_mod_cache *modcach
 					}
 					else
 					{
+						// Note: ip_str must remain in scope until memcpy(sni, selected_sni, ...) is called
 						char ip_str[INET6_ADDRSTRLEN];
 						const char *selected_sni;
 						
