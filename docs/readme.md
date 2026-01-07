@@ -427,7 +427,26 @@ hex строка начинается с "0x". Имя файла можно пи
 Если сначала идет TLS фейк, для него задан режим однократной модификации, затем идет не TLS фейк, то будет ошибка.
 Нужно использовать `--dpi-desync-fake-tls-mod=none'.
 
-Пример : `--dpi-desync-fake-tls=iana_org.bin --dpi-desync-fake-tls-mod=rndsni --dpi-desync-fake-tls=0xaabbccdd --dpi-desync-fake-tls-mod=none'
+Примеры использования:
+
+* Базовый пример с `rndsni`:
+  `--dpi-desync-fake-tls=iana_org.bin --dpi-desync-fake-tls-mod=rndsni --dpi-desync-fake-tls=0xaabbccdd --dpi-desync-fake-tls-mod=none`
+
+* Использование `altsni` со списком доменов:
+  `--dpi-desync-fake-tls-mod=altsni --dpi-desync-fake-tls-altsni=google.com,facebook.com,twitter.com`
+
+* Использование `altsni` с загрузкой из файла:
+  `--dpi-desync-fake-tls-mod=altsni --dpi-desync-fake-tls-altsni=@/path/to/domains.txt`
+
+* Использование только `dupip`:
+  `--dpi-desync-fake-tls-mod=dupip`
+
+* Комбинирование `altsni` и `dupip` (случайный выбор между доменами из списка и IP-адресом назначения):
+  `--dpi-desync-fake-tls-mod=altsni,dupip --dpi-desync-fake-tls-altsni=ya.ru,vk.com,ok.ru`
+
+* Комбинирование с другими модификаторами:
+  `--dpi-desync-fake-tls-mod=rnd,altsni,dupsid --dpi-desync-fake-tls-altsni=example.com,example.org`
+
 
 ### TCP СЕГМЕНТАЦИЯ
 

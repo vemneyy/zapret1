@@ -363,7 +363,26 @@ This way it's possible to use different mods for every TLS fake.
 
 If a mod is set to non-TLS fake it causes error. Use `--dpi-desync-fake-tls-mod=none'.
 
-Example : `--dpi-desync-fake-tls=iana_org.bin --dpi-desync-fake-tls-mod=rndsni --dpi-desync-fake-tls=0xaabbccdd --dpi-desync-fake-tls-mod=none'
+Usage examples:
+
+* Basic example with `rndsni`:
+  `--dpi-desync-fake-tls=iana_org.bin --dpi-desync-fake-tls-mod=rndsni --dpi-desync-fake-tls=0xaabbccdd --dpi-desync-fake-tls-mod=none`
+
+* Using `altsni` with domain list:
+  `--dpi-desync-fake-tls-mod=altsni --dpi-desync-fake-tls-altsni=google.com,facebook.com,twitter.com`
+
+* Using `altsni` with file loading:
+  `--dpi-desync-fake-tls-mod=altsni --dpi-desync-fake-tls-altsni=@/path/to/domains.txt`
+
+* Using only `dupip`:
+  `--dpi-desync-fake-tls-mod=dupip`
+
+* Combining `altsni` and `dupip` (random selection between domains from list and destination IP address):
+  `--dpi-desync-fake-tls-mod=altsni,dupip --dpi-desync-fake-tls-altsni=ya.ru,vk.com,ok.ru`
+
+* Combining with other modifiers:
+  `--dpi-desync-fake-tls-mod=rnd,altsni,dupsid --dpi-desync-fake-tls-altsni=example.com,example.org`
+
 
 ### TCP segmentation
 
